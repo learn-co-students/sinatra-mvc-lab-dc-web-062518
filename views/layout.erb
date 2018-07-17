@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -7,10 +7,12 @@
   <body>
     <h1>Pig Latinizer!</h1>
     <form method="post" action="/piglatinize">
+      <%=yield%>
+
       <p>Enter your phrase:</p>
       <textarea name="user_phrase"></textarea>
       <br>
       <button type="submit" value="submit">Submit</button>
     </form>
   </body>
-</html> -->
+</html>
