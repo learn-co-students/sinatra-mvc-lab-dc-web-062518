@@ -5,30 +5,29 @@ class PigLatinizer
 
   def piglatinize(string)
     a = string.split(" ")
-    if a.length == 1
-      return PigLatinizer.word(a[0])
-    else
-      b = a.map do |word|
-        PigLatinizer.word(word)
-      end
-      b.join(" ")
-    end
+    b = a.map {|word| PigLatinizer.word(word)}
+    b.join(" ")
   end
 
   def self.word(word)
     first_letter = word[0].downcase
-    if first_letter == "a" || first_letter == "e" || first_letter == "i" || first_letter == "o" || first_letter == "u"
+    if self.vowel?(first_letter)
       "#{word}way"
     else
       consonants = []
       consonants << word[0]
-        if word[1] != "a" && word[1] != "e" && word[1] != "i" && word[1] != "o" && word[1] != "u" && word[1] != "y"
+        if self.vowel?(word[1]) == false || word[1] != "y"
           consonants << word[1]
-          if word[2] != "a" && word[2] != "e" && word[2] != "i" && word[2] != "o" && word[2] != "u" && word[2] != "y"
+          if self.vowel?(word[2]) == false || word[2] != "y"
             consonants << word[2]
           end
         end
       "#{word[consonants.length..-1] + consonants.join + "ay"}"
     end
   end
+
+  def vowel?(letter)
+    ["a", "e", "i", "o", "u"].include?(letter)
+  end
+
 end
